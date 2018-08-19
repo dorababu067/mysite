@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+<div class="container">
+    <div class="jumbotron text-center"><h2>{{ user.username|capfirst }} Profile<h2></div>
+        <p>{{user.firstname}}</p>
+    <table class="table" >
+        <tr>
+            <td>
+                <strong>UserName:</strong>
+                {{user.username|capfirst}}
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Date Of Birth:</strong>
+                {{user.userprofile.DOB}}
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Qualification:</strong>
+                {{user.userprofile.qualification}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Bio:</strong><br>
+                <tb>{{user.userprofile.Bio}}</t>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Profile Pic:</strong><br>
+                {%if user.profile.profile_pic %}
+                    <img src=" {{user.profile.profile_pic.url }}"/>
+                   
+                {% else %}
+                    <p>plz addd your profile pic</p>
+                {% endif %}
+            </td>
+
+            </tr>
+    </table>
+       
+</div>
+{% endblock %}

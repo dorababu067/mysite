@@ -1,0 +1,18 @@
+<div id="comments-section">
+<form method="POST" class="comment-form" action=".">
+	{% csrf_token %}
+	{{ form.as_p }}
+	{% if user.is_authenticated %}
+	<input type="submit"  value="Comment" class="btn btn-primary">
+	{% else %}
+	<input type="submit" value="Comment" class="btn btn-primary" disabled>
+	{% endif %}
+</form><br>
+	Comments:{{ comments.count }}
+	{% for comment in comments %}
+	  <blockquote class="blockquote">
+	  <p class="mb-0">{{comment.comment|capfirst}}</p>
+	  <footer class="blockquote-footer">By <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
+	</blockquote>
+	{% endfor %}
+</div>

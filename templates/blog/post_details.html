@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+<div class="container">
+	<p>{{ post.title|capfirst }}</p>
+	<p>
+		Post By : <strong>{{ post.authour|capfirst }}</strong>
+		<span style="float:right;">{{ post.created }}</span>
+	</p>
+	<p>{{ post.content }}</p>	
+
+	<div id="like-section">
+	{% include 'blog/like_section.html' %}
+	</div>
+	<br><br>
+	{% if user.is_authenticated %}
+	<div class="jumbotron">
+	<a href="{% url 'delete' id=post.id %}" class="btn btn-danger" style="float: right;" id="delete">Delete</a>
+	<a href="{% url 'edit' id=post.id %}" class="btn btn-primary" style="float: right;">Edit</a>
+	{% endif %}
+	</div><hr/>
+	<div class="main-comments">
+		{% include 'blog/comments.html' %}
+	</div>
+</div>
+{% endblock%} 
